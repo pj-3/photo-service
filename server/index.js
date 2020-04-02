@@ -22,4 +22,18 @@ app.get('/*', cors(), (req, res) => {
   res.sendFile(path.resolve(__dirname + '/../client/dist/index.html'));
 });
 
+app.post('/listing/', cors(), (req, res) => {
+  controller.post(req, res);
+});
+
+app.put('/listing/', cors(), (req, res) => {
+  controller.put(req, res);
+});
+
+app.delete('/listing/', cors(), (req, res) => {
+  controller.delete(req, res);
+});
+
+
+
 app.listen(port, () => console.log(`Listening to port ${port}!`));
