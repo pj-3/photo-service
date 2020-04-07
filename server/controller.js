@@ -58,4 +58,4 @@ const put = (req, res) => {
 //     }
 //   });
 // }
-module.exports = { get, post, put};
+module.exports = { get, post, put };

@@ -27,7 +27,7 @@ const images = [
 
 // randomly select an image
 const getRandomImage = () => {
-  const index = Math.floor(Math.random() * 22);
+  const index = Math.floor(Math.random() * 122);
   return images[index];
 };
 

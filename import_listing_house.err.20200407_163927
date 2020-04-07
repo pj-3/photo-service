@@ -1,0 +1,50 @@
+const writeListingHouse = fs.createWriteStream('listingHouse.csv');
+writeListingHouse.write('house_id, address, Date_updated, Date_created, image_id, photourl, photo_description', 'utf8');
+const ListingHouse = (writer, encoding, callback) => {
+  let k = 0;
+  let propertyId = 0;
+  let propertyCounter = propertyCount;
+  const write = () => {
+    let ok = true;
+// writer.pipe(fs.createWriteStream('listingHouse.csv'));
+    do {
+      propertyCounter--;
+      const randomHouseAddress = randomAddress();
+      const DateUpdated = randomDate();
+      const DateCreated = randomDate();
+      const total = Math.floor(Math.random() * (averageImageCountPerProperty - 1)) + 1;
+      for (var j = 0; j < total; j++) {
+        const randomImage = img.getRandomImage();
+        const randomDescriptionHouse = randomDescription();
+        if (propertyCounter === 0) {
+          writer.write(`${propertyId},"${randomHouseAddress}",${DateUpdated},${DateCreated},${k},"${randomImage}","${randomDescriptionHouse}"\n`, encoding, callback);
+          k++;
+        } else {
+          // ok = writer.write({
+          //   house_Id: propertyId,
+          //   address: randomHouseAddress,
+          //   Date_updated: Date_updated,
+          //   Date_created: Date_created,
+          //   image_Id: k,
+          //   photourl: img.getRandomImage(),
+          //   photo_description: randomDescription()
+          // });
+          ok = writer.write(`${propertyId},'${randomHouseAddress}',${DateUpdated},${DateCreated},${k},
+'${randomImage}','${randomDescriptionHouse}'\n`, encoding);
+          k++;
+        }
+      }
+      propertyId++;
+
+      if (k % 10000 === 0) {
+        console.log(k);
+      }
+    } while (propertyCounter > 0 && ok);
+    if (propertyCounter > 0) {
+      // had to stop early!
+      // write some more once it drains
+      writer.once('drain', write);
+    }
+  };
+  write();
+};
