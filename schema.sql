@@ -16,8 +16,7 @@ CREATE TABLE properties (
 CREATE TABLE images (
   image_Id serial primary key,
   id_Property INTEGER REFERENCES properties (id),
-  description varchar(300),
-  url varchar(300)
+  descriptide
 );
 
 CREATE TABLE users (
@@ -27,7 +26,7 @@ CREATE TABLE users (
 
 
 CREATE TABLE User_Liked_Images (
-  id_User INTEGER REFERENCES users (user_Id),
+  id_User INTEGER REFERENCES users (user_Id),ca
   id_Image INTEGER REFERENCES images (image_Id)
 )
 

@@ -16,7 +16,8 @@ CREATE TABLE Listing.house (
 CREATE TABLE Listing.user (
   id int,
   user_Id int,
-  liked_Image_Id int,
+  liked_Image_url text,
+  liked_Image_description text,
   user_Name text,
   PRIMARY KEY (user_Id, id)
 );
