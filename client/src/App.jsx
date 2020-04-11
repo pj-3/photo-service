@@ -7,12 +7,12 @@ class Header extends React.Component {
     super(props);
     this.state = {
       listing: {
-        _id: 'number',
+        house_Id: 'number',
         images: [1, 2, 3, 4, 5].map((i) => {
           return {
-            _id: i,
-            url: 'http://localhost:2555/loadingIMG.gif',
-            description: 'description'
+            house_Id: i,
+            photourl: 'http://localhost:2555/loadingIMG.gif',
+            photo_description: 'description'
           };
         })
       },
@@ -31,11 +31,12 @@ class Header extends React.Component {
   getListing(id) {
     axios.get('http://localhost:2555/listing', {
       params: {
-        _id: id
+        house_Id: id
       }
     })
       .then((result) => {
-        this.setState({ listing: result.data[0] });
+        this.setState({ listing: {house_Id: result.data[0].house_Id, images:result.data} }, () => console.log(result));
+        console.log(result)
       })
       .catch((err) => {
         console.log(err);

@@ -71,9 +71,9 @@ class Modal extends React.Component {
           {this.props.listing.images.length}
         </Page>
         <Prev onClick={this.toPrev} state={this.state.current}> ‹ </Prev>
-        <Image src={this.props.listing.images[this.state.current].url} />
+        <Image src={this.props.listing.images[this.state.current].photourl} />
         <Next onClick={this.toNext} state={this.state.current} max={imgArrayLength}> › </Next>
-        <Description>{this.props.listing.images[this.state.current].description}</Description>
+        <Description>{this.props.listing.images[this.state.current].photo_description}</Description>
       </Wrapper>
     );
   }

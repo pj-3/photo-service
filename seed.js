@@ -1,3 +1,4 @@
+const cassandra = reuqire('./index.js');
 const fs = require('fs');
 const csvWriter = require('csv-write-stream');
 const faker = require('faker');
@@ -289,10 +290,13 @@ const ListingUser = (writer, encoding, callback) => {
   write();
 };
 
+cassandra.client();
 
-ListingUser(writeListingUser, 'utf8', () => {
-  writer.end();
-});
+
+
+// ListingUser(writeListingUser, 'utf8', () => {
+//   writer.end();
+// });
 // ListingHouse(writeListingHouse,'utf8', () => {
 //   writer.end()
 // });

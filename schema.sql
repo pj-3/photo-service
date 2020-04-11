@@ -26,7 +26,7 @@ CREATE TABLE users (
 
 
 CREATE TABLE User_Liked_Images (
-  id_User INTEGER REFERENCES users (user_Id),ca
+  id_User INTEGER REFERENCES users (user_Id),
   id_Image INTEGER REFERENCES images (image_Id)
 )
 

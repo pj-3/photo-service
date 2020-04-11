@@ -39,11 +39,11 @@ class DefaultGall extends React.Component {
     return (
       <div>
         <Wrapper>
-          <Image src={this.props.listing.images[0].url} alt="img 1" id="first" onClick={this.handleclick} />
-          <Image src={this.props.listing.images[1].url} alt="img 2" id="second" onClick={this.handleclick} />
-          <Image src={this.props.listing.images[2].url} alt="img 3" id="third" onClick={this.handleclick} />
-          <Image src={this.props.listing.images[3].url} alt="img 4" id="fourth" onClick={this.handleclick} />
-          <Image src={this.props.listing.images[4].url} alt="img 5" id="fifth" onClick={this.handleclick} />
+          <Image src={this.props.listing.images[0].photourl} alt="img 1" id="first" onClick={this.handleclick} />
+          <Image src={this.props.listing.images[1].photourl} alt="img 2" id="second" onClick={this.handleclick} />
+          <Image src={this.props.listing.images[2].photourl} alt="img 3" id="third" onClick={this.handleclick} />
+          <Image src={this.props.listing.images[3].photourl} alt="img 4" id="fourth" onClick={this.handleclick} />
+          <Image src={this.props.listing.images[4].photourl} alt="img 5" id="fifth" onClick={this.handleclick} />
         </Wrapper>
         <WrapperModal>
           <CloseButton onClick={this.closeModal} display={this.state.displayModal}>
