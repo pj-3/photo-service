@@ -7,22 +7,19 @@ CREATE TABLE Listing.house (
    address text,
    Date_updated date,
    Date_created date,
-   image_Id varchar(100),
-   user_Id_for_Liked_Image varchar(100)
-   user_Name_for_Liked_Image
+   image_Id text,
    photourl text,
    photo_description text,
-   PRIMARY KEY (house_Id,image_Id,user_Id_for_Liked_Image)
+   PRIMARY KEY (house_Id,image_Id)
 );
 
--- CREATE TABLE Listing.user (
---   id int,
---   user_Id int,
---   liked_Image_url text,
---   liked_Image_description text,
---   user_Name text,
---   PRIMARY KEY (user_Id, id)
--- );
+CREATE TABLE Listing.user (
+  id int,
+  user_Id int,
+  liked_Image_Id text,
+  user_Name text,
+  PRIMARY KEY (user_Id, id)
+);
 
 
 

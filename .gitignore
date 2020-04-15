@@ -22,3 +22,8 @@ coverage
 
 # Compiled Dirs (http://nodejs.org/api/addons.html)
 bundle.js
+
+# cvs
+listingHouse.csv
+ListingUser1.csv
+

@@ -1,4 +1,3 @@
-const cassandra = reuqire('./index.js');
 const fs = require('fs');
 const csvWriter = require('csv-write-stream');
 const faker = require('faker');
@@ -8,7 +7,7 @@ const writer = csvWriter();
 
 // set the number of property
 const propertyCount = 10000000;
-const averageImageCountPerProperty = 3;
+const averageImageCountPerProperty = 10;
 const userCount = 10000000;
 const MAXHOMES = 5000000;
 const randomUser = () => {
@@ -214,7 +213,7 @@ const usersLikedImagesGerator = (writer, encoding, callback) => {
 const writeListingHouse = fs.createWriteStream('listingHouse.csv');
 const ListingHouse = (writer, encoding, callback) => {
   writeListingHouse.write('house_id, address, Date_updated, Date_created, image_id, photourl, photo_description' + '\n', 'utf8');
-  let k = 0;
+  // let k = 0;
   let propertyId = 0;
   let propertyCounter = propertyCount;
   const write = () => {
@@ -225,22 +224,23 @@ const ListingHouse = (writer, encoding, callback) => {
       const randomHouseAddress = randomAddress();
       const DateUpdated = randomDate();
       const DateCreated = randomDate();
-      const total = Math.floor(Math.random() * (averageImageCountPerProperty - 1)) + 1;
+      const total = Math.floor(Math.random() * (averageImageCountPerProperty - 7)) + 5;
       for (var j = 0; j < total; j++) {
+        let propertyImageId = propertyId + '-' + j;
         const randomImage = img.getRandomImage();
         const randomDescriptionHouse = randomDescription();
         if (propertyCounter === 0) {
-          writer.write(`${propertyId},"${randomHouseAddress}",${DateUpdated},${DateCreated},${k},${randomImage},"${randomDescriptionHouse}"\n`, encoding, callback);
-          k++;
+          writer.write(`${propertyId},"${randomHouseAddress}",${DateUpdated},${DateCreated},${propertyImageId},${randomImage},"${randomDescriptionHouse}"\n`, encoding, callback);
+          // k++;
         } else {
-          ok = writer.write(`${propertyId},"${randomHouseAddress}",${DateUpdated},${DateCreated},${k},${randomImage},"${randomDescriptionHouse}"\n`, encoding);
-          k++;
+          ok = writer.write(`${propertyId},"${randomHouseAddress}",${DateUpdated},${DateCreated},${propertyImageId},${randomImage},"${randomDescriptionHouse}"\n`, encoding);
+          // k++;
         }
       }
       propertyId++;
 
-      if (k % 10000 === 0) {
-        console.log(k);
+      if (propertyId % 10000 === 0) {
+        console.log(propertyId);
       }
     } while (propertyCounter > 0 && ok);
     if (propertyCounter > 0) {
@@ -269,13 +269,12 @@ const ListingUser = (writer, encoding, callback) => {
       let maxOfLiked = Math.floor(Math.random() * 5);
       let user = randomUser();
       for (var j = 0; j < maxOfLiked; j++) {
-        let randomImageUrl = img.getRandomImage();
-        let randomPhotoDescription = randomDescription();
+        let liked_Image_Id = Math.floor(Math.random() * 10000000) + '-' + Math.floor(Math.random() * 5);
         if (userCounter === 0) {
-          writer.write(`${k},${id},${randomImageUrl},"${randomPhotoDescription}",${user}\n`, encoding, callback);
+          writer.write(`${k},${id},${liked_Image_Id},${user}\n`, encoding, callback);
           k++;
         } else {
-          ok = writer.write(`${k},${id},${randomImageUrl},"${randomPhotoDescription}",${user}\n`, encoding);
+          ok = writer.write(`${k},${id},${liked_Image_Id},${user}\n`, encoding);
           k++;
         }
       }
@@ -290,16 +289,14 @@ const ListingUser = (writer, encoding, callback) => {
   write();
 };
 
-cassandra.client();
-
 
 
 // ListingUser(writeListingUser, 'utf8', () => {
 //   writer.end();
 // });
-// ListingHouse(writeListingHouse,'utf8', () => {
-//   writer.end()
-// });
+ListingHouse(writeListingHouse,'utf8', () => {
+  writer.end()
+});
 // imagesGenerator(writeImage, 'utf8', () => {
 //   writer.end();
 // });

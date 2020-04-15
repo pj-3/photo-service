@@ -36,7 +36,6 @@ class Header extends React.Component {
     })
       .then((result) => {
         this.setState({ listing: {house_Id: result.data[0].house_Id, images:result.data} }, () => console.log(result));
-        console.log(result)
       })
       .catch((err) => {
         console.log(err);
