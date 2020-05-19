@@ -1,6 +1,6 @@
 DROP KEYSPACE IF EXISTS Listing;
 
-CREATE KEYSPACE Listing WITH replication = {'class': 'SimpleStrategy', 'replication_factor':1};
+CREATE KEYSPACE Listing WITH replication = {'class': 'SimpleStrategy', 'replication_factor':3};
 
 CREATE TABLE Listing.house (
    house_Id int,

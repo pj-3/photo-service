@@ -6,7 +6,7 @@ const img = require('./images.js');
 const writer = csvWriter();
 
 // set the number of property
-const propertyCount = 10000000;
+const propertyCount = 1000000;
 const averageImageCountPerProperty = 10;
 const userCount = 10000000;
 const MAXHOMES = 5000000;
@@ -210,11 +210,11 @@ const usersLikedImagesGerator = (writer, encoding, callback) => {
   write();
 };
 
-const writeListingHouse = fs.createWriteStream('listingHouse.csv');
+const writeListingHouse = fs.createWriteStream('listingHouse10.csv');
 const ListingHouse = (writer, encoding, callback) => {
   writeListingHouse.write('house_id, address, Date_updated, Date_created, image_id, photourl, photo_description' + '\n', 'utf8');
   // let k = 0;
-  let propertyId = 0;
+  let propertyId = 9000000;
   let propertyCounter = propertyCount;
   const write = () => {
     let ok = true;

@@ -1,6 +1,6 @@
 const cassandra = require('cassandra-driver');
 
-const client = new cassandra.Client({ contactPoints: ['127.0.0.1'], localDataCenter: 'datacenter1', keyspace: 'listing' });
+const client = new cassandra.Client({ contactPoints: ['3.22.190.53', localDataCenter: 'datacenter1', keyspace: 'listing' });
 client.connect()
   .then(function () {
     console.log('Connected to cluster with %d host(s): %j', client.hosts.length, client.hosts.keys());

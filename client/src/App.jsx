@@ -11,7 +11,7 @@ class Header extends React.Component {
         images: [1, 2, 3, 4, 5].map((i) => {
           return {
             house_Id: i,
-            photourl: 'http://localhost:2555/loadingIMG.gif',
+            photourl: '/loadingIMG.gif',
             photo_description: 'description'
           };
         })
@@ -29,7 +29,7 @@ class Header extends React.Component {
 
   // get a listing
   getListing(id) {
-    axios.get('http://localhost:2555/listing', {
+    axios.get('/listing', {
       params: {
         house_Id: id
       }
